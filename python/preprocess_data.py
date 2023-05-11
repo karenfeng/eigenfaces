@@ -24,6 +24,8 @@ class EigenfacesDataset(Dataset):
         self.label = label
         self.classes = self.get_classes(label)
         self.num_classes = len(self.classes)
+        self.height = int(120 / scale)
+        self.width = int(128 / scale)
         self.transform = transform
 
     def __len__(self):
@@ -34,9 +36,9 @@ class EigenfacesDataset(Dataset):
             idx = idx.tolist()
 
         img_path = self.img_path_list[idx]
-        image = cv2.imread(img_path, -1)
+        image = cv2.imread(img_path, 0)
         if self.transform:
-            image = torch.squeeze(self.transform(image))
+            image = self.transform(image)
 
         labels = self.get_labels(img_path)
         label_idx = self.classes.index(labels[self.label])
