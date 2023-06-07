@@ -1,7 +1,7 @@
 .DS_Store
-.pt
-.pth
-.pkl
+*.pt
+*.pth
+*.pkl
 .ipynb_checkpoints/
 __pycache__/
 generated/
